@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
+    <link rel="stylesheet" href="{% static 'css/ttd_user_style.css' %}" />
+    <link
+      rel="stylesheet"
+      href="{% static 'css/ttd_user_mobile_style.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="fade"></div>
+    <div class="container">
+      <div class="loading">
+        <img
+          src="/images/loading.gif"
+          style="width: 40px; height: 40px; border-radius: 50%"
+        />
+      </div>
+      <div>
+        <br />
+        <div class="container-logo">
+          <img
+            src="https:/texttornado-storage.s3.amazonaws.com/images/logo.png"
+            alt="logo"
+            style="
+              width: 50px;
+              height: 50px;
+              border-radius: 50%;
+              margin: auto;
+              border: 1px solid #415c81;
+              background-color: white;
+            "
+          />
+        </div>
+        <h1>Sign in to TextTornado</h1>
+        <div class="container-error">
+          {% if message %}
+          <i class="fas fa-exclamation-triangle" style="color: red"></i> &nbsp;
+          <span style="padding: 10px" id="err">{{ message }}</span>
+          {% endif %}
+        </div>
+        <form action="session" method="POST" id="form2">
+          {% csrf_token %}
+          <label for="username">Username</label> <br />
+          <input type="text" id="username" name="username" /> <br />
+          <br />
+          <label for="username">password</label>
+
+          <input type="password" id="password" name="password" /> <br />
+          <input type="submit" value="Sign in" id="form" />
+          <label class="link-color"
+            ><a href="{% url 'resetPassword'%}" class="link-color"
+              >Forgot password?</a
+            ></label
+          >
+        </form>
+        <br />
+        <div class="container-new-acc">
+          <span>New to TextTornado?</span>
+          <span class="link-color">
+            <a href="{% url 'ttd_user_signin'%}" class="link-color"
+              >Create an account</a
+            ></span
+          ><span>.</span>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <p class="link-color">Terms</p>
+      <p class="link-color">Privacy</p>
+      <p style="color: grey; font-size: 80%">contant TextTernado Support</p>
+    </footer>
+    <div class="sub-footer">
+      <p>@ capsualcode 2023</p>
+    </div>
+    <script src="{% static 'js/user_login_request.js' %}"></script>
+  </body>
+</html>
